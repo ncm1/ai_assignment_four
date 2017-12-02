@@ -1,13 +1,104 @@
 \section{Question 8}
 
 \subsection{part a.}
-NOT DONE
+Cost of good quality car:
+\begin{equation}
+\label{eq:c+}
+C(q^+(c_1)) = \$ 4000 - (3000) = \$1000.
+\end{equation}
+Cost of bad quality car:
+\begin{equation}
+\label{eq:c-}
+C(q^-(c_1)) = \$ 4000 - (3000 + 1400) = -\$400. 
+\end{equation}
+\textit{Assuming that repairs can be made without taking it to the mechanic - perhaps the \$1400 is a separate cost than the \$100 needed to check the quality of the car.} \\
+Probability of good quality car:
+\begin{equation}
+\label{eq:+}
+	P(q^+(c_1)) = 0.7
+\end{equation}
+Probability of bad quality car:
+\begin{equation}
+\label{eq:-}
+	P(q^-(c_1)) = 0.3
+\end{equation}
+
+Expected net gain:
+\[E(c_1) = C(q^+(c_1))*P(q^+(c_1)) + C(q^-(c_1))*P(q^-(c_1))\]
+\begin{equation} 
+\label{eq:expected_value} 
+\mathbf{E(c_1) = \$580} 
+\end{equation}
+
 
 \subsection{part b.}
-NOT DONE
+
+\begin{equation}
+\label{eq:pass+}
+	P(Pass | q^+) = 0.8
+\end{equation}
+\begin{equation}
+\label{eq:pass-}
+	P(Pass | q^-) = 0.35
+\end{equation}
+Using \ref{eq:pass+} and \ref{eq:pass-}:
+\begin{equation}
+\label{eq:npass+}
+	P(\neg Pass | q^+) = 1 - P(Pass | q^+) = 0.2
+\end{equation}
+\begin{equation}
+\label{eq:npass-}
+	P(\neg Pass | q^-) = 1 - P(Pass | q^-) = 0.65
+\end{equation}
+Using \ref{eq:+}, \ref{eq:-}, \ref{eq:pass+}, \ref{eq:pass-}:
+\[P(Pass) = P(Pass | q^+) * P(q^+) + P(Pass | q^-) * P(q^-) = 0.665\]
+\begin{equation}
+\label{eq:pass}
+	\mathbf{P(Pass) = 0.665}
+\end{equation}
+Using \ref{eq:pass}:
+\[P(\neg Pass) = 1 - P(Pass) = 0.335  \]
+\begin{equation}
+\label{eq:npass}
+	\mathbf{P(\neg Pass) = 0.335}
+\end{equation}
+
+Using \ref{eq:pass+}, \ref{eq:+}, and \ref{eq:pass}:
+\begin{equation}
+	\mathbf{P(q^+ | Pass) = \frac{P(Pass | q^+) * P(q^+)}{P(Pass)}  = 0.842}
+\end{equation}
+Using \ref{eq:pass-}, \ref{eq:-}, and \ref{eq:pass}:
+\begin{equation}
+	\mathbf{P(q^- | Pass) = \frac{P(Pass | q^-) * P(q^-)}{P(Pass)}  = 0.158}
+\end{equation}
+Using \ref{eq:npass+}, \ref{eq:+}, and \ref{eq:npass}:
+\begin{equation}
+	\mathbf{P(q^+ | \neg Pass) = \frac{P(\neg Pass | q^+) * P(q^+)}{P(\neg Pass)}  = 0.418}
+\end{equation}
+Using \ref{eq:npass-}, \ref{eq:-}, and \ref{eq:npass}:
+\begin{equation}
+	\mathbf{P(q^- | \neg Pass) = \frac{P(\neg Pass | q^-) * P(q^-)}{P(\neg Pass)}  = 0.582}
+\end{equation}
 
 \subsection{part c.}
-NOT DONE
+Paying for the test with the mechanic, the new costs are:
+\[ C'(q^+(c_1)) = C(q^+(c_1)) - \$100 = \$900 \]
+\[ C'(q^-(c_1)) = C(q^-(c_1)) - \$100 = -\$500 \]
+
+Given a pass:
+\[E(c_1 | Pass) = C'(q^+(c_1))*P(q^+(c_1)|Pass) + C'(q^-(c_1))*P(q^-(c_1)|Pass)\]
+\[\mathbf{E(c_1 | Pass) = \$678.8}\]
+
+Given a failure:
+\[E(c_1 |\neg Pass) = C'(q^+(c_1))*P(q^+(c_1)|\neg Pass) + C'(q^-(c_1))*P(q^-(c_1)|\neg Pass)\]
+\[\mathbf{E(c_1 |\neg Pass) = \$85.2}\]
+
+Regardless of a pass or a failure, the best decision is the sell the car as there will be a net gain.
 
 \subsection{part d.}
-NOT DONE
+Without the mechanic's test, the expected gain from selling the car will be 
+$\mathbf{E(c_1) = \$580} $
+
+With the test, the expected gain is $\mathbf{ \$678.80}$. The value of the optimal information is the difference between the expected gain with the information and the expected gain without the information. The optimal information value is $\mathbf{\$98.80}$.
+I should take C1 to the mechanic.
+
