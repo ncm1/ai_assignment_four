@@ -5,22 +5,85 @@ The set of variables is the combination of the row and column of the grid. \\
 X = {[1,1], [1,2], ... , [i,j-1], [i, j]}
 
 The domain is the possible values that each variable can hold: 1 to 9.\\
-D = {1, 2, 3, 4, 5, 6, 7, 8, 9}
+D = {1, 2, 3, 4, 5, 6, 7, 8, 9} \\
 
-The constraint is that each row, column, and neighboring box must hold unique values in each of the variables.
+The constraint is that each row, column, and neighboring box must hold unique values in each of the variables. \\
+ 
+i, j = fixed random variable \\
+I, J = random variable \\
+C1 = {(X(i,1), X(i,2), X(i,3), X(i,4), X(i,5), X(i,6), X(i,7), X(i,8), X(i,9)),\\
+	{X(i,1) != X(i,2) != X(i,3) != X(i,4) != X(i,5) != X(i,6) != X(i,7) != X(i,8) != X(i,9)}}\\
+This rule ensures each value in a row is unique. \\
 
-i, j = fixed variable
-I, J = random variable
-C = {(X(1,1), X(1,2), X(1,3), X(1,4), X(1,5), X(1,6), X(1,7), X(1,8), X(1,9)), X(1,1) != X(1,2) != X(1,3) != X(1,4) != X(1,5) != X(1,6) != X(1,7) != X(1,8) != X(1,9)}
+C2 = {(X(1,j), X(2,j), X(3,j), X(4,j), X(5,j), X(6,j), X(7,j), X(8,j), X(9,j)), \\
+{X(1,j) != X(2,j) != X(3,j) != X(4,j) != X(5,j) != X(6,j) != X(7,j) != X(8,j) != X(9,j)}}\\
+This rule ensures each value in a column is unique. \\
+
+a = 2, 5, 8 \\
+C3 = {(X(a-1,a-1), X(a-1,a), X(a-1,a+1), X(a,a-1), X(a,a), X(a,a+1), X(a+1,a-1), X(a+1,a), X(a+1,a+1)), \\
+	{X(a-1,a-1) != X(a-1,a) != X(a-1,a+1) != X(a,a-1) != X(a,a) != X(a,a+1) != X(a+1,a-1) != X(a+1,a) != X(a+1,a+1)}}\\
+This rule ensures each value in a 3x3 box region are unique.
 
 \subsection{part b.}
-Start state: initial arrangement of values 1-9 on the Sudoku board in random locations and such that the constraints are not broken. No additional values on the board\\
+\textbf{Start state:} initial arrangement of values 1-9 on the Sudoku board in random locations and such that the constraints are not broken. No additional values on the board\\
 
-Successor function: add
+\textbf{Successor function:} to return the set of all successive states, try a value from 1-9 at each coordinate, and exclude the Sudoku configurations that do not meet the constraints, e.g. two 9's in the same row and 3x3 region.
 
-Goal test: all locations on the board has a value between 1 - 9.
+\textbf{Goal test:} all locations on the board has a value between 1 - 9 and meet the constraint. The 3x3 region, row, or column all have unique values. 
 
-Path cost: If the action leads to a state where one of the constraints are broken, then the path cost should be infinite. Path cost should depend on how many 
+\textbf{Path cost:}
+
+Take for example an almost filled box in Sudoku, represented in matrix form:
+\[
+\begin{Bmatrix}
+	1 & 2 & 3 \\
+	4 & 5 & 6 \\
+	7 & 8 &  \\	
+\end{Bmatrix}
+\]
+The path cost to a state where 9 goes in the corresponding slot should be very low. We also note that this slot can only have a 9 as a possible value. Whereas in this case:
+
+\[
+\begin{Bmatrix}
+ &  & 3 \\
+4 &  & 6 \\
+ &  &  \\	
+\end{Bmatrix}
+\]
+
+The path cost to enter a value in these slots should be very high as this action does not lead to any definite resolutions. Each of the slots can possibly be values 1, 2, 5, 7, 8, or 9. We seek paths that to states that are more constrained, or solved.
+
+We can consider the number of possible values that can be placed on an empty slot $E_p$.
+
+The path cost can be defined as the change in the number of possible values that can be placed in empty slots, or $\Delta E_p$. If an action results in a larger difference in $E_p$, then the path cost is high. If an action results in a small change in $E_p$, then these paths are ideal. This is because if there is a small change, then this means that the action taken solves a currently existing constraint.
+
+\\
+\textbf{Minimum Remaining Value}\\
+
+The minimum remaining value heuristic is ideal because it finds the most constrained variable and removes it from the search tree. This prunes the search tree and reduces the possible size of the solution set.
+
+If the degree heuristic is chosen, it will work to affect the constraints of the other values. We do want to eventually constrain the other variables more, however this is not a measure of success. Arbitrarily choosing a random cell that affects the maximum number of other cells would be favorable under the degree heuristic.
+
+To be reliable, we should choose the heuristic that removes the most constrained variable, irrespective of it's effect on other cells.
+
+\textbf{Branching factor} 
+Once the first value is written to a cell, there are: $9 * 51 = 459$ different options to choose from. 
+
+Eventually as the board gets filled and there are only 2 cells remaining there will be $9 * 2 = 18$ options remaining because there are two cells left to be filled and each have 9 options.
+
+\textbf{Solution depth} 
+The solution will always be found at a depth of 52. This is when the board will be full of values.
+
+\textbf{Maximum depth} 
+52. When 52 values are written into each cell, then the board will be completely filled.
+
+\textbf{Size of state space} 
+
+9 possible values for each cell \\
+81 - M = 52 total cells in board \\
+
+State space =$9 ^ {52}$;
+
 
 \subsection{part c.}
 Easy problems can be solved by choosing actions in the coordinates that are most constrained, and continue choosing actions this way until the board is filled. The clues are given in such a way that every action the user takes can be deterministic and the user does not have to make any choices.
@@ -29,4 +92,14 @@ Easy problems can be solved by choosing actions in the coordinates that are most
 Difficult problems most likely will require backtracking, because the solution can require actions that aren't intuitive and may require the user to make approximations. The puzzle may reach an equilibrium point where the next action is not obvious, as multiple actions can be taken and still be valid until a much later state.
 
 \subsection{part d.}
-NOT DONE
+
+for i = 1 to max-flips do \\
+	if board = full, then return  \\
+	randomly select an empty cell c from board \\
+	with probability p flip the value at c \\
+	else select value based on minimized path cost \\
+return failure \\
+
+The incremental formulation will likely do better on easier puzzles. This local search algorithm will likely do better on more difficult puzzles as it will randomly switch these variables. It won't have to waste time with back-propagation and will randomly switch a variable to proceed to the optimal state.
+
+We argue that randomly switching a value in a cell will have better results than back-propagating as this will take time and it may have to search the whole state space to find the correct.
