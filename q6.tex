@@ -1,10 +1,132 @@
-\section{Question 6}
+1\section{Question 6}
 
 \subsection{part a.}
-NOT DON3
+B = burglary \\
+E = earthquake \\
+A = alarm \\
+J = John calls \\ 
+M = Mary calls \\
+\[P(B) = 0.001 \]
+\[P(E) = 0.002\] \\
+\[P(B | J,M) = \alpha * P(B) * \sum_e{P(e) * \sum_a{P(a|B,e) * P(J|a) * P(M|a)}}
+\]
+Compute the sum over A, which results in summing two terms as alarm is either true or false.
+\[\sum_{a}{P(a|B,e) * P(J|a) * P(M|a)} = 
+P(a|B,E)*P(j|a) * P(m|a) + P(\neg a|B,E) * P(j|\neg a)*P(m|\neg a)
+\]
+\[P(b, e) = .95 * .9 * .7 + .05 * .05 * .01 = .598525
+\]
+
+For the next summation we will also need the case where the earthquake event does not occur:
+\[P(b,\neg e) = .94 * .9 * .7 + .06 * .05 * .01 = .592230
+\]
+
+Then the rest of the calculations:
+\[P(\neg b, e) = .29 * .9 * .7 + .71 * .05 * .01 = .183055
+\]
+\[P(\neg b,\neg e) = .001 * .9 * .7 + .999 * .05 * .01 = .001130
+\]
+Including these calculations into the matrix form:
+\[
+f_6(B,E) = \begin{Bmatrix}
+P(b,e) & P(b, \neg e) \\
+P(\neg b, e) & P(\neg b, \neg e) \\
+\end{Bmatrix}
+\]
+\[
+f_6(B,E) = \begin{Bmatrix}
+.598525 & .592230 \\
+.183055 & .001130 \\
+\end{Bmatrix}
+\]
+
+Then sum over E, whether the event of an earthquake is true or false.
+\[ P(B | J, M) = \alpha * P(B) * \sum{P(e) * f_6(B,e)} 
+\]
+\[
+\sum_e{P(e) * P(B,e)} = P(e)* f_6(B,e) + P(\neg e) * f_6(B, \neg e)
+\]
+
+\[
+\begin{Bmatrix} P(b,e) \\ P(\neg b, e) \\ \end{Bmatrix} = 
+.002 * \begin{Bmatrix} .598525 \\ .183055 \\\end{Bmatrix} + 0.998 * \begin{Bmatrix}.592230 \\ .001130 \\ \end{Bmatrix} = 
+\begin{Bmatrix} .590466 \\ .001494 \\ \end{Bmatrix}
+\]
+\[
+f_7(B) = \begin{Bmatrix} .590466 \\ .001494 \\ \end{Bmatrix}
+\]
+\[
+f_7(b) = .590466
+\]
+\[
+f_7(\neg b) = .001494
+\]
+\\
+Finally
+
+\[
+P(B|J,M) = \alpha * P(B) * f_7(B) )
+\]
+\[
+P(b|J,M) = \alpha * .001 * .590466
+\]
+\[
+P(\neg b|J,M) = \alpha * .999 * .001494
+\]
+We sum up the two probabilities to find alpha
+\[
+{P(b|J,M) + P(\neg b | J,M) = 0.0020830}
+\]
+\[
+\alpha = 1 / 0.0020830 = 480.
+\]
+
+\[
+\bm{
+P(b|J,M) = 480 * .001 * .590466 = 0.28347
+}
+\]
+\[
+\bm{
+P(\neg b|J,M) = 480 * .999 * .001494 = 0.71653
+}
+\]
+
 
 \subsection{part b.}
-NOT DONE
+\textbf{Operations in Variable Elimination} \\
+4*(4 mult 1 add) +  2*(2 mult 1 add) + 2*(2 mult): \\
++ 1 division and 1 addition for finding the $\alpha$ value: \\
+7 additions \\
+24 multiplications \\
+1 division \\
+32 total operations \\
+
+\textbf{Operations in tree enumeration algorithm} \\
+For each probability in the final term $P(B|j,m)$ we have three additions, 14 multiplications, and 1 division. The division is from the normalization factor.
+
+There are 8 different cases in $P(B|j,m)$, so in total: \\
+24 additions \\
+112 multiplications \\
+8 divisions \\
+144 total operations \\
+
+Variable elimination uses much less operations than the tree enumeration algorithm. It uses 22 \% of the operations used by the tree enumeration algorithm.
+
 
 \subsection{part c.}
-NOT DONE
+
+where n is the number of boolean variables
+
+Using variable elimination:
+The time and space complexity are dominated by the highest factor constructed. The largest factor is comprised of the number of a children a node in a Bayesian Network may have. If there are n boolean variables, then it is possible for n-1 boolean variables to all have the same parent node. So the largest factor is O(n-1), but this is in fact the worst case scenario. On average it will be less than n as the Bayesian Network will not always be in this configuration.
+
+The space complexity is $0(2^{(n-1)})$
+The time complexity is $O(2^{(n-1)})$
+
+the worst case complexity is worse than the tree enumeration, however on average the time complexity is better. There is higher potential space complexity to save states so they do not need to be calculated again (reduce time complexity).
+
+
+Using enumeration:
+The space complexity is $O(n)$ as the only requirement is to store each boolean variable
+The time complexity is $O(2^(n))$, as each combination of the boolean variable must be calculated.

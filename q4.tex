@@ -1,10 +1,69 @@
 \section{Question 4}
 
 \subsection{part a.}
-NOT DON3
+\[
+(\neg P_1 \lor ... \lor \neg P_m \lor Q)
+\]
+
+Using DeMorgan's theorem, this term is equivalent to:
+\[
+\neg(P_1 \land ... \land P_m \land \neg Q)
+\]
+Using the Associative property
+\[
+\neg((P_1 \land ... \land P_m) \land \neg Q)
+\]
+Using the conditional equivalence: $\neg(P \to Q) = (P \land \neg Q)$
+\[
+\neg(\neg(P_1 \land ... \land P_m \to Q))
+\]
+Finally,
+\[
+(P_1 \land ... \land P_m \to Q)
+\]
 
 \subsection{part b.}
-NOT DONE
+We can repeat the above proof by replacing Q with an expression $(Q_1 \lor ... \lor Q_n)$. A literal can be replaced with an expression. 
+
+\[
+(\neg P_1 \lor ... \lor \neg P_m \lor \neg (Q_1 \lor ... \lor Q_n))
+\]
+Using DeMorgan's theorem, this term is equivalent to:
+\[
+\neg(P_1 \land ... \land P_m \land \neg (Q_1 \lor ... \lor Q_n))
+\]
+Using the Associative property
+\[
+\neg((P_1 \land ... \land P_m) \land \neg (Q_1 \lor ... \lor Q_n))
+\]
+Using the conditional equivalence: $\neg(P \to Q) = (P \land \neg Q)$
+\[
+\neg(\neg((P_1 \land ... \land P_m) \to (Q_1 \lor ... \lor Q_n)))
+\]
+Finally,
+\[
+(P_1 \land ... \land P_m) \to (Q_1 \lor ... \lor Q_n)
+\]
 
 \subsection{part c.}
-NOT DONE
+To complete the full resolution and find the resolvent, start with the two clauses:
+\[
+(l_1 \lor ... \lor l_k \lor m_1 \lor ... \lor m_n)
+\]
+We can split this expression up using the associative property:
+\[
+(l_i \lor m_j) \lor (l_1 \lor ... \lor l_{i-1} \lor l_{i+1} \lor ... \lor l_k) \lor (m_1 \lor ... \lor m_{j-1} \lor m_{j+1} \lor ...  \lor m_n)  
+\]
+Using the Conditional equivalence property, similar to what we derived in part A, this term is equivalent to:
+\[
+\neg(l_i \lor m_j) \to (l_1 \lor ... \lor l_{i-1} \lor l_{i+1} \lor ... \lor l_k) \lor (m_1 \lor ... \lor m_{j-1} \lor m_{j+1} \lor ...  \lor m_n)  
+\]
+Because $l_i$ and $m_j$ are complimentary:
+$(l_i \lor m_j) = True$
+\[
+True \to (l_1 \lor ... \lor l_{i-1} \lor l_{i+1} \lor ... \lor l_k) \lor (m_1 \lor ... \lor m_{j-1} \lor m_{j+1} \lor ...  \lor m_n)  
+\]
+Therefore it is inferred that  
+\[
+(l_1 \lor ... \lor l_{i-1} \lor l_{i+1} \lor ... \lor l_k \lor m_1 \lor ... \lor m_{j-1} \lor m_{j+1} \lor ...  \lor m_n)
+\]
