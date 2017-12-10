@@ -22,7 +22,6 @@ Probability of bad quality car:
 \label{eq:-}
 	P(q^-(c_1)) = 0.3
 \end{equation}
-
 Expected net gain:
 \[E(c_1) = C(q^+(c_1))*P(q^+(c_1)) + C(q^-(c_1))*P(q^-(c_1))\]
 \begin{equation} 
@@ -62,7 +61,6 @@ Using \ref{eq:pass}:
 \label{eq:npass}
 	\mathbf{P(\neg Pass) = 0.335}
 \end{equation}
-
 Using \ref{eq:pass+}, \ref{eq:+}, and \ref{eq:pass}:
 \begin{equation}
 	\mathbf{P(q^+ | Pass) = \frac{P(Pass | q^+) * P(q^+)}{P(Pass)}  = 0.842}
@@ -84,11 +82,9 @@ Using \ref{eq:npass-}, \ref{eq:-}, and \ref{eq:npass}:
 Paying for the test with the mechanic, the new costs are:
 \[ C'(q^+(c_1)) = C(q^+(c_1)) - \$100 = \$900 \]
 \[ C'(q^-(c_1)) = C(q^-(c_1)) - \$100 = -\$500 \]
-
 Given a pass:
 \[E(c_1 | Pass) = C'(q^+(c_1))*P(q^+(c_1)|Pass) + C'(q^-(c_1))*P(q^-(c_1)|Pass)\]
 \[\mathbf{E(c_1 | Pass) = \$678.8}\]
-
 Given a failure:
 \[E(c_1 |\neg Pass) = C'(q^+(c_1))*P(q^+(c_1)|\neg Pass) + C'(q^-(c_1))*P(q^-(c_1)|\neg Pass)\]
 \[\mathbf{E(c_1 |\neg Pass) = \$85.2}\]

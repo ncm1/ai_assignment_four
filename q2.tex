@@ -106,7 +106,7 @@ if AdvanceBoard(board, cell, 0) = failure	// if random value changes required \\
 j = 0; \\ 
 while boards is not empty \\
 get board <= boards \\
-if AdvanceState$(board, conflict_index[j], probability)$= success then  return success \\
+if AdvanceState$(board, conflict_index[j], probability)$= success then  return success  end if\\
 end while \\
 else 	return success \\
 end if; 
@@ -117,7 +117,7 @@ while available successors greater than 0 \\
 with probability p, select random value for board[cell] \\
 with probability 1-p, select best value based on path costs \\
 num constraints unmet <- evaluate board \\
-if (board = full) return success \\
+if (board = full): return success  end if\\
 if constraints unmet: \\
 conflictIndex[j] = store board's index of conflict \\
 boards[j] = store board \\
