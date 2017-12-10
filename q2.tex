@@ -1,37 +1,41 @@
 \section{Question 2}
 
 \subsection{part a.}
+In this section we define the set of variables, domain, and the constraints.
+
 The set of variables is the combination of the row and column of the grid. \\
 X = {[1,1], [1,2], ... , [i,j-1], [i, j]}
 
 The domain is the possible values that each variable can hold: 1 to 9.\\
 D = {1, 2, 3, 4, 5, 6, 7, 8, 9} \\
 
-The constraint is that each row, column, and neighboring box must hold unique values in each of the variables. \\
- 
+The constraint is that each row, column, and neighboring box must hold unique values in each of the variables. The following rule ensures each value in a row is unique. \\
 i, j = fixed random variable \\
 I, J = random variable \\
 C1 = {(X(i,1), X(i,2), X(i,3), X(i,4), X(i,5), X(i,6), X(i,7), X(i,8), X(i,9)),\\
 	{X(i,1) != X(i,2) != X(i,3) != X(i,4) != X(i,5) != X(i,6) != X(i,7) != X(i,8) != X(i,9)}}\\
-This rule ensures each value in a row is unique. \\
 
+
+This rule ensures each value in a column is unique. \\
 C2 = {(X(1,j), X(2,j), X(3,j), X(4,j), X(5,j), X(6,j), X(7,j), X(8,j), X(9,j)), \\
 {X(1,j) != X(2,j) != X(3,j) != X(4,j) != X(5,j) != X(6,j) != X(7,j) != X(8,j) != X(9,j)}}\\
-This rule ensures each value in a column is unique. \\
 
+
+This rule ensures each value in a 3x3 box region are unique.
 a = 2, 5, 8 \\
 C3 = {(X(a-1,a-1), X(a-1,a), X(a-1,a+1), X(a,a-1), X(a,a), X(a,a+1), X(a+1,a-1), X(a+1,a), X(a+1,a+1)), \\
 	{X(a-1,a-1) != X(a-1,a) != X(a-1,a+1) != X(a,a-1) != X(a,a) != X(a,a+1) != X(a+1,a-1) != X(a+1,a) != X(a+1,a+1)}}\\
-This rule ensures each value in a 3x3 box region are unique.
+
 
 \subsection{part b.}
+We define the start state, successor function, goal test, path cost,  branching factor, solution depth, maximum depth, size of the state space, and the ideal value heuristic to use.
 \textbf{Start state:} initial arrangement of values 1-9 on the Sudoku board in random locations and such that the constraints are not broken. No additional values on the board\\
 
 \textbf{Successor function:} to return the set of all successive states, try a value from 1-9 at each coordinate, and exclude the Sudoku configurations that do not meet the constraints, e.g. two 9's in the same row and 3x3 region.
 
 \textbf{Goal test:} all locations on the board has a value between 1 - 9 and meet the constraint. The 3x3 region, row, or column all have unique values. 
 
-\textbf{Path cost:}
+\textbf{Path cost:} 
 
 Take for example an almost filled box in Sudoku, represented in matrix form:
 \[
@@ -57,8 +61,8 @@ We can consider the number of possible values that can be placed on an empty slo
 
 The path cost can be defined as the change in the number of possible values that can be placed in empty slots, or $\Delta E_p$. If an action results in a larger difference in $E_p$, then the path cost is high. If an action results in a small change in $E_p$, then these paths are ideal. This is because if there is a small change, then this means that the action taken solves a currently existing constraint.
 
-\\
-\textbf{Minimum Remaining Value}\\
+
+\textbf{Minimum Remaining Value}
 
 The minimum remaining value heuristic is ideal because it finds the most constrained variable and removes it from the search tree. This prunes the search tree and reduces the possible size of the solution set.
 
@@ -66,23 +70,23 @@ If the degree heuristic is chosen, it will work to affect the constraints of the
 
 To be reliable, we should choose the heuristic that removes the most constrained variable, irrespective of it's effect on other cells.
 
-\textbf{Branching factor} 
+\textbf{Branching factor:} 
 Once the first value is written to a cell, there are: $9 * 51 = 459$ different options to choose from. 
 
 Eventually as the board gets filled and there are only 2 cells remaining there will be $9 * 2 = 18$ options remaining because there are two cells left to be filled and each have 9 options.
 
-\textbf{Solution depth} 
+\textbf{Solution depth:} 
 The solution will always be found at a depth of 52. This is when the board will be full of values.
 
-\textbf{Maximum depth} 
+\textbf{Maximum depth:} 
 52. When 52 values are written into each cell, then the board will be completely filled.
 
-\textbf{Size of state space} 
-
+\textbf{Size of state space:}
+ 
+Each possible value for each cell can be repeated for each cell on the board.
 9 possible values for each cell \\
 81 - M = 52 total cells in board \\
-
-State space =$9 ^ {52}$;
+\textbf{State space =$9 ^ {52} \approx 10^{49}$};
 
 
 \subsection{part c.}
@@ -93,12 +97,39 @@ Difficult problems most likely will require backtracking, because the solution c
 
 \subsection{part d.}
 
-for i = 1 to max-flips do \\
-	if board = full, then return  \\
-	randomly select an empty cell c from board \\
-	with probability p flip the value at c \\
-	else select value based on minimized path cost \\
-return failure \\
+\begin{singlespace}
+$\>$$\>$$\>$$\>$$\>$ \textbf{function Search():} \\
+boards = PriorityQueue of boards; \\
+i[num cells] = 0; \\
+j = 0; \\
+if AdvanceBoard(board, cell, 0) = failure	// if random value changes required \\
+j = 0; \\ 
+while boards is not empty \\
+get board <= boards \\
+if AdvanceState$(board, conflict_index[j], probability)$= success then  return success \\
+end while \\
+else 	return success \\
+end if; 
+
+
+\textbf{function AdvanceBoard(board, cell, p):} \\
+while available successors greater than 0 \\
+with probability p, select random value for board[cell] \\
+with probability 1-p, select best value based on path costs \\
+num constraints unmet <- evaluate board \\
+if (board = full) return success \\
+if constraints unmet: \\
+conflictIndex[j] = store board's index of conflict \\
+boards[j] = store board \\
+increment j \\ 
+board[cell] = 0 		//reset the board \\
+else	cell = empty cell on board \\
+end if \\
+end while 
+\end{singlespace}
+
+This algorithm will advance the states of the Sudoku board as normal. If it reaches a state where a conflict exists and the constraints are not met, this state is saved in a priority queue data structure. Once the first iteration passes  through all the actions and gets stuck ( no backtracking) as a solution could not be found, then we go back to the boards with the unmet constraints.
+The boards should be ordered in a priority queue, and the boards with the least amount of empty cells should be chosen first. We randomly change the value of the board at these conflict cells and continue to advance the state of the board if there are any successors. We iterate over the saved boards until we iterate through all of them and a solution is found.
 
 The incremental formulation will likely do better on easier puzzles. This local search algorithm will likely do better on more difficult puzzles as it will randomly switch these variables. It won't have to waste time with back-propagation and will randomly switch a variable to proceed to the optimal state.
 
