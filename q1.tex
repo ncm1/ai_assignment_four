@@ -105,7 +105,11 @@ Node A: 49
 The root node value has a value of 49, which is the expected value for the scenario of the opponent
 choosing a random node.
 
-We can apply alpha beta pruning down to depth 3 after finding the expected values
+We can apply alpha beta pruning algorithm, although first the minimax algorithm will need to find the expected values at each of the nodes. Using the algorithm after this step
+begs the question of why should we use the alpha beta pruning algorithm in the first place. If we use all of the computational resources to calculate those expected values then
+using the alpha beta pruning algorithm is redundant and doesn't provide any utility.
+
+This shows that alpha beta pruning may not be the most efficient algorithm in the case of a suboptimal opponent, as there are better choices to choose from.
 
 
 \subsection{NOTCOMPLETE}
