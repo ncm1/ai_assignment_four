@@ -1,17 +1,17 @@
-1\section{Question 6}
+\section{Question 6}
 
 \subsection{part a.}
 B = burglary \\
 E = earthquake \\
 A = alarm \\
-J = John calls \\ 
+J = John calls \\
 M = Mary calls \\
 \[P(B) = 0.001 \]
 \[P(E) = 0.002\] \\
 \[P(B | J,M) = \alpha * P(B) * \sum_e{P(e) * \sum_a{P(a|B,e) * P(J|a) * P(M|a)}}
 \]
 Compute the sum over A, which results in summing two terms as alarm is either true or false.
-\[\sum_{a}{P(a|B,e) * P(J|a) * P(M|a)} = 
+\[\sum_{a}{P(a|B,e) * P(J|a) * P(M|a)} =
 P(a|B,E)*P(j|a) * P(m|a) + P(\neg a|B,E) * P(j|\neg a)*P(m|\neg a)
 \]
 \[P(b, e) = .95 * .9 * .7 + .05 * .05 * .01 = .598525
@@ -41,15 +41,15 @@ f_6(B,E) = \begin{Bmatrix}
 \]
 
 Then sum over E, whether the event of an earthquake is true or false.
-\[ P(B | J, M) = \alpha * P(B) * \sum{P(e) * f_6(B,e)} 
+\[ P(B | J, M) = \alpha * P(B) * \sum{P(e) * f_6(B,e)}
 \]
 \[
 \sum_e{P(e) * P(B,e)} = P(e)* f_6(B,e) + P(\neg e) * f_6(B, \neg e)
 \]
 
 \[
-\begin{Bmatrix} P(b,e) \\ P(\neg b, e) \\ \end{Bmatrix} = 
-.002 * \begin{Bmatrix} .598525 \\ .183055 \\\end{Bmatrix} + 0.998 * \begin{Bmatrix}.592230 \\ .001130 \\ \end{Bmatrix} = 
+\begin{Bmatrix} P(b,e) \\ P(\neg b, e) \\ \end{Bmatrix} =
+.002 * \begin{Bmatrix} .598525 \\ .183055 \\\end{Bmatrix} + 0.998 * \begin{Bmatrix}.592230 \\ .001130 \\ \end{Bmatrix} =
 \begin{Bmatrix} .590466 \\ .001494 \\ \end{Bmatrix}
 \]
 \[

@@ -1,10 +1,40 @@
 \section{Question 3}
 
+
+
 \subsection{part a.}
-NOT DON3
+S = superman is defeated \\
+O = facing opponent alone \\
+OK = opponent is carrying kryptonite \\
+
+For superman to be defeated, it has to be that he is facing an opponent alone and his opponent is carrying kryptonite. \\
+(O \land OK) \to S \\
+\neg (O \land OK) \lor S
+\neg O \lor \neg OK \lor S \\
+
+
+AK = acquiring kryptonite \\
+BC = batman coordinates with lex luther \\
+BA = batman acquires kryptonite from lex \\
+
+Acquiring kryptonite, however, means that batman has to coordinate with lex luther and
+acquire it from him. \\
+
+AK \to (BC \land BA) \\
+\neg AK \lor (BC \land BA) \\
+\neg AK \lor \neg BC \lor \neg BA \\
+
+WU = wonder woman is upset \\
+WS = wonder woman fights with superman \\
+
+If, however, batman coordinates with lex luther, this upsets wonder woman who will intervene and fight on the side of superman\\
+BC \to WU \land WS
+\neg BC \lor WU \lor WS
 
 \subsection{part b.}
-NOT DONE
+Turning the above statements into 3-cnf form
+
+(\neg O \lor \neg OK \lor S) \land (\neg AK \lor \neg BC \lor \neg BA) \land (\neg BC \lor WU \lor WS)
 
 \subsection{part c.}
 NOT DONE
