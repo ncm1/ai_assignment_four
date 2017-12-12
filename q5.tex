@@ -1,10 +1,31 @@
 \section{Question 5}
 
 \subsection{part a.}
-NOT DON3
+P(A,B,C,D,E) = P(A) * P(D | A, B) * P(B) * P(E | B, C) * P(C) \\
+P(A,B,C,D,E) = 0.2 * 0.1 * 0.5 * 0.3 * 0.8 \\
+P(A,B,C,D,E) = 0.0024
 
 \subsection{part b.}
-NOT DONE
+
+P(\neg{A},\neg{B},\neg{C},\neg{D},\neg{E}) = P(\neg{A}) * P(\neg{D} | \neg{A}, \neg{B}) * P(\neg{B}) * P(\neg{E} | \neg{B}, \neg{C}) * P(\neg{C}) \\
+P(\neg{A},\neg{B},\neg{C},\neg{D},\neg{E}) = 0.8 * 0.9 * 0.5 * 0.7 * 0.2 \\
+P(\neg{A},\neg{B},\neg{C},\neg{D},\neg{E}) = 0.0504
 
 \subsection{part c.}
-NOT DONE
+
+
+$ P(\neg{A} | B,C,D,E) = \dfrac{P(\neg{A}, B, C, D, E)}{\sum\limits_{A}^{} P(B, C, D, E)} $ \\
+$ P(\neg{A} | B,C,D,E) = \alpha P(\neg{A}, B, C, D, E) $ \\
+$ P(\neg{A} | B,C,D,E) = \alpha P(\neg{A}) * P(B) * P(C) * P(D | \neg{A}, B) * P(E | B, C) $ \\
+$ P(\neg{A} | B,C,D,E) = \alpha 0.8 * 0.5 * 0.8 * 0.6 * 0.3 $ \\
+$ P(\neg{A} | B,C,D,E) = \alpha 0.0576 $ 
+
+\newpage
+Solving for \alpha ... \\
+\alpha = \dfrac{1}{P(\neg{A},B,C,D,E) + P(A,B,C,D,E)} \\
+\alpha = \dfrac{1}{0.0576 + 0.0024} \\
+\alpha = \dfrac{1}{0.06} \\
+
+Resulting...\\
+P(\neg{A} | B,C,D,E) = \dfrac{0.0576}{0.06}  \\
+P(\neg{A} | B,C,D,E) = 0.96

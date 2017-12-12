@@ -21,6 +21,7 @@ C2 = {(X(1,j), X(2,j), X(3,j), X(4,j), X(5,j), X(6,j), X(7,j), X(8,j), X(9,j)), 
 {X(1,j) != X(2,j) != X(3,j) != X(4,j) != X(5,j) != X(6,j) != X(7,j) != X(8,j) != X(9,j)}}\\
 
 
+
 This rule ensures each value in a 3x3 box region are unique.
 a = 2, 5, 8 \\
 C3 = {(X(a-1,a-1), X(a-1,a), X(a-1,a+1), X(a,a-1), X(a,a), X(a,a+1), X(a+1,a-1), X(a+1,a), X(a+1,a+1)), \\
@@ -63,6 +64,7 @@ The path cost can be defined as the change in the number of possible values that
 
 
 \textbf{Minimum Remaining Value}
+
 
 The minimum remaining value heuristic is ideal because it finds the most constrained variable and removes it from the search tree. This prunes the search tree and reduces the possible size of the solution set.
 
