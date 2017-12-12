@@ -6,45 +6,35 @@
 S = superman is defeated \\
 O = facing opponent alone \\
 OK = opponent is carrying kryptonite \\
-
 For superman to be defeated, it has to be that he is facing an opponent alone and his opponent is carrying kryptonite. \\
-S \iff (O \land OK) \\
-(S \to (O \land OK)) \land ((O \land OK) \to S)                             \text{(applied biconditional elimination)} \\
-(S \to (\neg{O} \lor \neg{OK})) \land ((O \land OK) \to S)                  \text{(DeMorgans)}                         \\
-(\neg{S} \lor (\neg{O} \lor \neg{OK})) \land (\neg{(O \land OK)} \lor S)    \text{(applied implication elimination)}   \\
-(\neg{S} \lor \neg{O} \lor \neg{OK})  \land (\neg{O} \lor \neg{OK} \lor S)  \text{(Distributivity)                     \\
-
-
+S \iff (O \land OK)  \\
+(S \to (O \land OK)) \land ((O \land OK) \to S)                            \text{(applied biconditional elimination)} \\
+(S \to (\neg{O} \lor \neg{OK})) \land ((O \land OK) \to S)                 \text{(DeMorgans)}                         \\
+(\neg{S} \lor (\neg{O} \lor \neg{OK})) \land (\neg{(O \land OK)} \lor S)   \text{(applied implication elimination)}   \\
+(\neg{S} \lor \neg{O} \lor \neg{OK})  \land (\neg{O} \lor \neg{OK} \lor S) \text{(Distributivity)                     \\
 AK = acquiring kryptonite \\
 BC = batman coordinates with lex luther \\
 BA = batman acquires kryptonite from lex \\
-
 Acquiring kryptonite, however, means that batman has to coordinate with lex luther and
 acquire it from him. \\
-
 AK \to (BC \land BA) \\
 \neg AK \lor (BC \land BA) \\
 \neg AK \lor \neg BC \lor \neg BA \\
-
 WU = wonder woman is upset \\
 WS = wonder woman fights with superman \\
-
 If, however, batman coordinates with lex luther, this upsets wonder woman who will intervene and fight on the side of superman\\
 BC \to WU \land WS \\
 \neg BC \lor WU \lor WS \\
 
 \subsection{part b.}
+
 Turning the above statements into 3-cnf form, our KB can be represented as follows...\\
-
 (\neg{S} \lor \neg{O} \lor \neg{OK})  \land (\neg{O} \lor \neg{OK} \lor S)  \land (\neg AK \lor \neg BC \lor \neg BA) \land (\neg BC \lor WU \lor WS)
-
 \subsection{part c.}
-
 To show that batman cannot defeat superman, we can show that (KB \land \alpha) is unsatisfiable(The knowledge base entails that superman can be defeated),
 which means every assignment of variables does not satisfy the sentence. This is known as proof by contradiction {\alpha} = S, or the value of superman
-being defeated by batman. \\
+being defeated by batman.
 
 \newpage
 Taking the disjunction of KB and \neg{\alpha}... \\
-
 [(\neg{S} \lor \neg{O} \lor \neg{OK})  \land (\neg{O} \lor \neg{OK} \lor S)  \land (\neg AK \lor \neg BC \lor \neg BA) \land (\neg BC \lor WU \lor WS)] \land S

@@ -1,10 +1,53 @@
 \section{Question 7}
 
 \subsection{part a.}
-NOT DON3
+
+\text{Prove that} $ P(X|MB(X)) = \alpha P(X|U_1,...,U_m)  \prod\limits_{Y_i}^{} $ P(Y_i|Z_1...) $ \\
+\noindent
+The markov blanket covers the parents of X as well as its children and children's parents. \\
+$ MB(X) =  Parents(X), Y_i, Z_{1i},...,Z_{nj} $  Also, note $ Parents(X) = U_1,...,U_m $\\
+\noindent
+$ MB(X) = (U_1,...,U_m), Y_i, (Z_{1i},...,Z_{nj}) $ \\
+
+\noindent
+So, we have... \\
+$ P(X|MB(X)) = P(X | (U_1,...,U_m), Y, Z_{1i},...,Z_{nj}) = \alpha P(X,(U_1,...,U_m), Y_i, (Z_{1i},...,Z_{nj})) $ \\
+\noindent
+$ P(X|MB(X)) = \alpha P(X | U_1,...,U_m) P(Y_i | (Z_{1i},...,Z_{nj})) $ \\
+$ P(X|MB(X)) = \alpha P(X | U_1,...,U_m) P(Y_i | (Z_{1i}) * P(Y_i |...) * P(Y_i | Z_{nj})$ \\
+$ P(X|MB(X)) = \alpha P(X|U_1,...,U_m)  \prod\limits_{Y_i}^{} $ P(Y_i|Z_1...) $ \text{Q.E.D.}\\
 
 \subsection{part b.}
-NOT DONE
+
+  The Markov Chain Monte Carlo algorithm will begin with an initial state [sprinkler, wetgrass, cloudy, rain]
+  The evidence variables: sprinkler, and wetgrass are initialized to their observed values while the nonobserved values: cloudy, rain are
+  randomized. Initial State: <cloudy, sprinkler, rain, wetgrass> = <true, true, false, true>
+
+  After initializing, the non evidence variables are sampled in an arbitrary order for N iterations, while the evidence variables are fixed.
+  For example, the non evidence variable cloudy is sampled, and a result of cloudy = false is returned giving: <false, true, false, true>.
+  This process will finish until all of the iterations are complete.
+
+  In total, there are 4 states since the evidence variables sprinkler and wetgrass will not be changing.
+  There are 2 non evidence variables cloudy and rain 2^2 = 4 \text{states}
+
+\noindent
+R\_C       = \text{P(Rain   = true   | sprinkler = true, wetgrass = true, cloudy = true)} \\
+R\_\neg{C} = \text{P(Rain   = true   | sprinkler = true, wetgrass = true, cloudy = false)} \\
+C\_R       = \text{P(Cloudy = true | sprinkler = true, wetgrass = true, rain = true)} \\
+C\_\neg{R} = \text{P(Cloudy = true | sprinkler = true, wetgrass = true, rain = false)}  \\
+
+  \[
+\begin{blockarray}{cccccc}
+R & \neg{R} & C & \neg{C} \\
+\begin{block}{(ccccc)c}
+  1 & 1 & 1 & 1 & 1 & R \\
+  0 & 1 & 0 & 0 & 1 & \neg{R} \\
+  0 & 0 & 1 & 0 & 1 & C \\
+  0 & 0 & 0 & 1 & 1 & \neg{C} \\
+\end{block}
+\end{blockarray}
+ \]
 
 \subsection{part c.}
-NOT DONE
+
+  NOT DONE
