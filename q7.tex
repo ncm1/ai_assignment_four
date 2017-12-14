@@ -34,6 +34,11 @@ $ P(X|MB(X)) = \alpha P(X|U_1,...,U_m)  \prod\limits_{Y_i}^{} $ P(Y_i|Z_1...) $ 
   In total, there are 4 states since the evidence variables sprinkler and wetgrass will not be changing.
   There are 2 non evidence variables cloudy and rain 2^2 = \text{4 states}
 
+\subsection{part c.}
+
+\noindent
+P(x'_i | mb(X_i)) = \alpha P(x'_i | parents(X_i)) P(y_i | parents(Y_i))) \\
+
 \noindent
 R_C         = \text{P(Rain   = true   | sprinkler = true, wetgrass = true, cloudy = true)} \\
 R_{\neg{C}} = \text{P(Rain   = true   | sprinkler = true, wetgrass = true, cloudy = false)} \\
@@ -52,27 +57,23 @@ R_{\neg{C}}  = <0.185,0.815> \\
 
 \noindent
 C_R        = \alpha P(Cloudy=true) P(Sprinkler=true | Cloudy=true) P(Rain | Cloudy=true) \\
-C_R        = \alpha <0.5, 0.5> <0.1,0.5> <0.8,0.2 > = \alpha <0.04, 0.05>  \\
+C_R        = \alpha <0.5, 0.5> <0.1,0.5> <0.8,0.2 > = \alpha <0.04, 0.09>  \\
 C_R        = <0.444, 0.555> \\
 
 \noindent
 C_{\neg{R}}   = \alpha P(Cloudy=true) P(Sprinkler=true | Cloudy=true) P(\neg{Rain} | Cloudy=true) \\
-C_{\neg{R}}   = \alpha <0.5, 0.5> <0.1,0.5> <0.2,0.8 > = \alpha <0.01,0.2 >  \\
-C_{\neg{R}}   = <0.0476,0.952>    \\
+C_{\neg{R}}   = \alpha <0.5, 0.5> <0.1,0.5 > <0.2,0.8 > = \alpha <0.01,0.36 >  \\
+C_{\neg{R}}   = <0.0.0476,0.952>    \\
 
-NOT DONE
+
   \[
-\begin{blockarray}{cccccc}
+\begin{blockarray}{ccccc}
 R_C & R_{\neg{C}}  & C\_R & C_{\neg{R}} \\
-\begin{block}{(ccccc)c}
-  0 & 1 & 1 & 1 & 1 & R_C   \\
-  0 & 0 & 0 & 0 & 1 & R_{\neg{C}} \\
-  0 & 0 & 0 & 0 & 1 & C_R  \\
-  0 & 0 & 0 & 0 & 1 & C_{\neg{R}} \\
+\begin{block}{(cccc)c}
+  0         & 0      & 0.815  & 0.185  & R_C   \\
+  0         & 0      & 0.185  & 0.815  & R_{\neg{C}} \\
+  0.444     & 0.0476 & 0      & 0      & C_R  \\
+  0.555     & 0.952  & 0      & 0      & C_{\neg{R}} \\
 \end{block}
 \end{blockarray}
  \]
-
-\subsection{part c.}
-
-  NOT DONE
