@@ -21,7 +21,11 @@ $ P(X|MB(X)) = \alpha P(X|U_1,...,U_m)  \prod\limits_{Y_i}^{} $ P(Y_i|Z_1...) $ 
 
   The Markov Chain Monte Carlo algorithm will begin with an initial state [sprinkler, wetgrass, cloudy, rain]
   The evidence variables: sprinkler, and wetgrass are initialized to their observed values while the nonobserved values: cloudy, rain are
-  randomized. Initial State: <cloudy, sprinkler, rain, wetgrass> = <true, true, false, true>
+  randomized. \\ \noindent
+
+  Initial State: <cloudy, sprinkler, rain, wetgrass> = <true, true, false, true> \\
+
+  \noindent
 
   After initializing, the non evidence variables are sampled in an arbitrary order for N iterations, while the evidence variables are fixed.
   For example, the non evidence variable cloudy is sampled, and a result of cloudy = false is returned giving: <false, true, false, true>.
@@ -31,20 +35,40 @@ $ P(X|MB(X)) = \alpha P(X|U_1,...,U_m)  \prod\limits_{Y_i}^{} $ P(Y_i|Z_1...) $ 
   There are 2 non evidence variables cloudy and rain 2^2 = \text{4 states}
 
 \noindent
-R\_C       = \text{P(Rain   = true   | sprinkler = true, wetgrass = true, cloudy = true)} \\
-R\_\neg{C} = \text{P(Rain   = true   | sprinkler = true, wetgrass = true, cloudy = false)} \\
-C\_R       = \text{P(Cloudy = true | sprinkler = true, wetgrass = true, rain = true)} \\
-C\_\neg{R} = \text{P(Cloudy = true | sprinkler = true, wetgrass = true, rain = false)}  \\
+R_C         = \text{P(Rain   = true   | sprinkler = true, wetgrass = true, cloudy = true)} \\
+R_{\neg{C}} = \text{P(Rain   = true   | sprinkler = true, wetgrass = true, cloudy = false)} \\
+C_R         = \text{P(Cloudy = true   | sprinkler = true, rain = true)} \\
+C_{\neg{R}} = \text{P(Cloudy = true   | sprinkler = true, rain = false)}  \\
+
+\noindent
+R_C        = \alpha P(Rain = true| Cloudy = true) P(wetgrass = true | sprinkler = true, Rain = true) \\
+R_C        = \alpha <0.8, 0.2> <0.99,0.90> = \alpha <0.792, 0.180> \\
+R_C        =  <0.815, 0.185> \\
+
+\noindent
+R_{\neg{C}}  = \alpha P(Rain = true| Cloudy = false) P(wetgrass = true | sprinkler = true, Rain = true) \\
+R_{\neg{C}}  = \alpha <0.2, 0.8> <0.90, 0.99> = \alpha <0.18, 0.792> \\
+R_{\neg{C}}  = <0.185,0.815> \\
+
+\noindent
+C_R        = \alpha P(Cloudy=true) P(Sprinkler=true | Cloudy=true) P(Rain | Cloudy=true) \\
+C_R        = \alpha <0.5, 0.5> <0.1,0.5> <0.8,0.2 > = \alpha <0.04, 0.05>  \\
+C_R        = <0.444, 0.555> \\
+
+\noindent
+C_{\neg{R}}   = \alpha P(Cloudy=true) P(Sprinkler=true | Cloudy=true) P(\neg{Rain} | Cloudy=true) \\
+C_{\neg{R}}   = \alpha <0.5, 0.5> <0.1,0.5> <0.2,0.8 > = \alpha <0.01,0.2 >  \\
+C_{\neg{R}}   = <0.0476,0.952>    \\
 
 NOT DONE
   \[
 \begin{blockarray}{cccccc}
-R & \neg{R} & C & \neg{C} \\
+R_C & R_{\neg{C}}  & C\_R & C_{\neg{R}} \\
 \begin{block}{(ccccc)c}
-  1 & 1 & 1 & 1 & 1 & R \\
-  0 & 1 & 0 & 0 & 1 & \neg{R} \\
-  0 & 0 & 1 & 0 & 1 & C \\
-  0 & 0 & 0 & 1 & 1 & \neg{C} \\
+  0 & 1 & 1 & 1 & 1 & R_C   \\
+  0 & 0 & 0 & 0 & 1 & R_{\neg{C}} \\
+  0 & 0 & 0 & 0 & 1 & C_R  \\
+  0 & 0 & 0 & 0 & 1 & C_{\neg{R}} \\
 \end{block}
 \end{blockarray}
  \]
