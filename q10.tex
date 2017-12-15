@@ -1,2 +1,56 @@
 \section{Question 10}
-NOT DONE
+The original utilities were 0 for each state.
+
+The Value iteration utilizes the Bellman equation:
+
+\[ 
+U_{i+1}(s) = R(s) + \gamma* max_a(\sum_{s'}P(s'|s,a)*U_i(s'))
+\]
+
+Using this, it estimates the utility at a specified state. This is compared to the previous estimated utility. Convergence is realized when the difference $\delta$ between the utilities approaches 0.
+
+The convergence condition is: \[ \delta > \epsilon* (1 - \gamma) / \gamma  \]
+
+With a higher discounting rate, this results in higher constraint that difference must meet to have the algorithm be considered converged. The condition is primarily based on the $\epsilon$ value.
+The discounting factor represents the agent's preference for future rewards. Given an agent's preference for future rewards, this convergence condition scales up the amount of iterations exponentially based on the discount factor. Where if the agent prefers current solutions, we desire less iterations to converge to an optimal solution faster.
+
+This effect is minimal until the discount factor approaches one, then the convergence condition becomes much more stringent. However the exponential effect of the discount rate is desired, as when the discount factor approaches 1, the smaller precision of the factor will make a large difference in the long run.
+
+Once the difference exceeds this amount, then there are no more iterations and the algorithm is complete.
+
+Conceptually, the utility of a state  is calculated by adding the reward to the best action that once could take to maximize the utility. The expected value of each action is computed and combined with the same action taken from all the other neighboring states.
+
+We tested several different discounting factor $\gamma$, and epsilon $\epsilon$ to achieve the optimal policy and optimal utilities of each state.
+
+\begin{center}
+\begin{tabular} {|c | c | c | c | c | c |}
+ 	$\epsilon$ & $\gamma$ & \# Iterations & Time (ms) &  Optimal Utilities & Optimal Policies \\
+	0.001 & 0.5 & 11 & 0.919 & [0.27544, 0.58187, 0.30994, 0.62018] & [T(1,2,4),T(2,2,4),T(3,3,4),T(4,1,4)] \\
+	
+	0.0001 & 0.5 & 14 & 1.123 & [0.27580, 0.58232, 1.30282, 0.62064] & [T(1,2,4),T(2,2,4),T(3,3,4),T(4,1,4)] \\
+	
+	0.0001 & 0.7 & 28 & 2.307 & [0.83885, 1.23834, 1.90177, 1.28827] & [T(1,2,4),T(2,2,4),T(3,3,4),T(4,1,4)] \\
+	
+	0.00001 & 0.7 & 34 & 2.773 & [0.83891, 1.23840, 1.90183, 1.28834] & [T(1,2,4),T(2,2,4),T(3,3,4),T(4,1,4)] \\
+	
+	0.0001 & 0.9 & 103 & 7.900 & [3.92930, 4.41441, 5.02753, 4.47505] & [T(1,2,4),T(2,2,4),T(3,3,4),T(4,1,4)] \\
+	
+	0.00001 & 0.9 & 125 & 10.010 & [3.92938, 4.41449, 5.02762, 4.47513] & [T(1,2,4),T(2,2,4),T(3,3,4),T(4,1,4)] \\
+	
+\end{tabular}
+\end{center}
+
+Using the example of $\epsilon = 0.0001$ and $\gamma = 0.7$
+\begin{center}
+\begin{tabular} {|c | c | c |}
+
+Iteration	&	Optimal Utilities & Optimal Policy \\
+5 &	[0.59457, 0.94973, 1.66851, 0.99413] & [T(1,2,4),T(2,2,4),T(3,3,4),T(4,1,4)] \\
+10 & [0.79224, 1.19612, 1.85406, 1.24660] & [T(1,2,4),T(2,2,4),T(3,3,4),T(4,1,4)] \\
+15 & [0.83163, 1.23068, 1.89466, 1.28056] & [T(1,2,4),T(2,2,4),T(3,3,4),T(4,1,4)] \\ 
+20 & [0.83764, 1.23717, 1.90055, 1.28711]& [T(1,2,4),T(2,2,4),T(3,3,4),T(4,1,4)] \\
+25 & [0.83871, 1.23819, 1.90163, 1.28813]& [T(1,2,4),T(2,2,4),T(3,3,4),T(4,1,4)] \\
+
+
+\end{tabular}
+\end{center}

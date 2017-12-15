@@ -2,7 +2,7 @@
 
 \subsection{part a.}
 
-\text{Prove that} $ P(X|MB(X)) = \alpha P(X|U_1,...,U_m)  \prod\limits_{Y_i}^{} $ P(Y_i|Z_1...) $ \\
+\text{Prove that} $ P(X|MB(X)) = \alpha P(X|U_1,...,U_m)  \prod\limits_{Y_i}^{} \$ P(Y_i|Z_1...) $ \\
 \noindent
 The markov blanket covers the parents of X as well as its children and children's parents. \\
 $ MB(X) =  Parents(X), Y_i, Z_{1i},...,Z_{nj} $  Also, note $ Parents(X) = U_1,...,U_m $\\
@@ -15,7 +15,7 @@ $ P(X|MB(X)) = P(X | (U_1,...,U_m), Y, Z_{1i},...,Z_{nj}) = \alpha P(X,(U_1,...,
 \noindent
 $ P(X|MB(X)) = \alpha P(X | U_1,...,U_m) P(Y_i | (Z_{1i},...,Z_{nj})) $ \\
 $ P(X|MB(X)) = \alpha P(X | U_1,...,U_m) P(Y_i | (Z_{1i}) * P(Y_i |...) * P(Y_i | Z_{nj})$ \\
-$ P(X|MB(X)) = \alpha P(X|U_1,...,U_m)  \prod\limits_{Y_i}^{} $ P(Y_i|Z_1...) $ \text{Q.E.D.}\\
+$ P(X|MB(X)) = \alpha P(X|U_1,...,U_m)  \prod\limits_{Y_i}^{} \$ P(Y_i|Z_1...) $ \text{Q.E.D.}\\
 
 \subsection{part b.}
 
@@ -32,38 +32,38 @@ $ P(X|MB(X)) = \alpha P(X|U_1,...,U_m)  \prod\limits_{Y_i}^{} $ P(Y_i|Z_1...) $ 
   This process will finish until all of the iterations are complete.
 
   In total, there are 4 states since the evidence variables sprinkler and wetgrass will not be changing.
-  There are 2 non evidence variables cloudy and rain 2^2 = \text{4 states}
+  There are 2 non evidence variables cloudy and rain $2^2$ = \text{4 states}
 
 \subsection{part c.}
 
 \noindent
-P(x'_i | mb(X_i)) = \alpha P(x'_i | parents(X_i)) P(y_i | parents(Y_i))) \\
+$P(x'_i | mb(X_i)) = \alpha P(x'_i | parents(X_i)) P(y_i | parents(Y_i)))$ \\
 
 \noindent
-R_C         = \text{P(Rain   = true   | sprinkler = true, wetgrass = true, cloudy = true)} \\
-R_{\neg{C}} = \text{P(Rain   = true   | sprinkler = true, wetgrass = true, cloudy = false)} \\
-C_R         = \text{P(Cloudy = true   | sprinkler = true, rain = true)} \\
-C_{\neg{R}} = \text{P(Cloudy = true   | sprinkler = true, rain = false)}  \\
+$R_C        $ = \text{P(Rain   = true   | sprinkler = true, wetgrass = true, cloudy = true)} \\
+$R_{\neg{C}}$ = \text{P(Rain   = true   | sprinkler = true, wetgrass = true, cloudy = false)} \\
+$C_R        $ = \text{P(Cloudy = true   | sprinkler = true, rain = true)} \\
+$C_{\neg{R}}$ = \text{P(Cloudy = true   | sprinkler = true, rain = false)}  \\
 
 \noindent
-R_C        = \alpha P(Rain = true| Cloudy = true) P(wetgrass = true | sprinkler = true, Rain = true) \\
-R_C        = \alpha <0.8, 0.2> <0.99,0.90> = \alpha <0.792, 0.180> \\
-R_C        =  <0.815, 0.185> \\
+$R_C        = \alpha P(Rain = true| Cloudy = true) P(wetgrass = true | sprinkler = true, Rain = true)$ \\
+$R_C        = \alpha <0.8, 0.2> <0.99,0.90> = \alpha <0.792, 0.180> $\\
+$R_C        =  <0.815, 0.185> $\\
 
 \noindent
-R_{\neg{C}}  = \alpha P(Rain = true| Cloudy = false) P(wetgrass = true | sprinkler = true, Rain = true) \\
-R_{\neg{C}}  = \alpha <0.2, 0.8> <0.90, 0.99> = \alpha <0.18, 0.792> \\
-R_{\neg{C}}  = <0.185,0.815> \\
+$R_{\neg{C}}  = \alpha P(Rain = true| Cloudy = false) P(wetgrass = true | sprinkler = true, Rain = true) $\\
+$R_{\neg{C}}  = \alpha <0.2, 0.8> <0.90, 0.99> = \alpha <0.18, 0.792> $\\
+$R_{\neg{C}}  = <0.185,0.815> $\\
 
 \noindent
-C_R        = \alpha P(Cloudy=true) P(Sprinkler=true | Cloudy=true) P(Rain | Cloudy=true) \\
-C_R        = \alpha <0.5, 0.5> <0.1,0.5> <0.8,0.2 > = \alpha <0.04, 0.09>  \\
-C_R        = <0.444, 0.555> \\
+$C_R        = \alpha P(Cloudy=true) P(Sprinkler=true | Cloudy=true) P(Rain | Cloudy=true) $\\
+$C_R        = \alpha <0.5, 0.5> <0.1,0.5> <0.8,0.2 > = \alpha <0.04, 0.09>  $\\
+$C_R        = <0.444, 0.555> $\\
 
 \noindent
-C_{\neg{R}}   = \alpha P(Cloudy=true) P(Sprinkler=true | Cloudy=true) P(\neg{Rain} | Cloudy=true) \\
-C_{\neg{R}}   = \alpha <0.5, 0.5> <0.1,0.5 > <0.2,0.8 > = \alpha <0.01,0.36 >  \\
-C_{\neg{R}}   = <0.0.0476,0.952>    \\
+$C_{\neg{R}}   = \alpha P(Cloudy=true) P(Sprinkler=true | Cloudy=true) P(\neg{Rain} | Cloudy=true) $\\
+$C_{\neg{R}}   = \alpha <0.5, 0.5> <0.1,0.5 > <0.2,0.8 > = \alpha <0.01,0.36 >  $\\
+$C_{\neg{R}}   = <0.0.0476,0.952>    $\\
 
 
   \[
