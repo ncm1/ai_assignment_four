@@ -30,7 +30,8 @@ C3 = {(X(a-1,a-1), X(a-1,a), X(a-1,a+1), X(a,a-1), X(a,a), X(a,a+1), X(a+1,a-1),
 
 \subsection{part b.}
 We define the start state, successor function, goal test, path cost,  branching factor, solution depth, maximum depth, size of the state space, and the ideal value heuristic to use.
-\textbf{Start state:} initial arrangement of values 1-9 on the Sudoku board in random locations and such that the constraints are not broken. No additional values on the board\\
+
+\textbf{Start state:} initial arrangement of values 1-9 on the Sudoku board in random locations and such that the constraints are not broken. No additional values on the board
 
 \textbf{Successor function:} to return the set of all successive states, try a value from 1-9 at each coordinate, and exclude the Sudoku configurations that do not meet the constraints, e.g. two 9's in the same row and 3x3 region.
 
@@ -92,7 +93,7 @@ Each possible value for each cell can be repeated for each cell on the board.
 
 
 \subsection{part c.}
-Easy problems can be solved by choosing actions in the coordinates that are most constrained, and continue choosing actions this way until the board is filled. The clues are given in such a way that every action the user takes can be deterministic and the user does not have to make any choices.
+Easy problems can be solved by choosing actions in the coordinates that are most constrained, and continue choosing actions this way until the board is filled. The clues are given in such a way that every action the user takes can be found to be optimal and the user will not have to backtrack.
 
 
 Difficult problems most likely will require backtracking, because the solution can require actions that aren't intuitive and may require the user to make approximations. The puzzle may reach an equilibrium point where the next action is not obvious, as multiple actions can be taken and still be valid until a much later state.

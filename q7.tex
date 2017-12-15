@@ -2,7 +2,7 @@
 
 \subsection{part a.}
 
-\text{Prove that} $ P(X|MB(X)) = \alpha P(X|U_1,...,U_m)  \prod\limits_{Y_i}^{} \$ P(Y_i|Z_1...) $ \\
+\text{Prove that} $ P(X|MB(X)) = \alpha P(X|U_1,...,U_m)  \prod\limits_{Y_i}^{} P(Y_i|Z_1...) $ \\
 \noindent
 The markov blanket covers the parents of X as well as its children and children's parents. \\
 $ MB(X) =  Parents(X), Y_i, Z_{1i},...,Z_{nj} $  Also, note $ Parents(X) = U_1,...,U_m $\\
@@ -15,7 +15,7 @@ $ P(X|MB(X)) = P(X | (U_1,...,U_m), Y, Z_{1i},...,Z_{nj}) = \alpha P(X,(U_1,...,
 \noindent
 $ P(X|MB(X)) = \alpha P(X | U_1,...,U_m) P(Y_i | (Z_{1i},...,Z_{nj})) $ \\
 $ P(X|MB(X)) = \alpha P(X | U_1,...,U_m) P(Y_i | (Z_{1i}) * P(Y_i |...) * P(Y_i | Z_{nj})$ \\
-$ P(X|MB(X)) = \alpha P(X|U_1,...,U_m)  \prod\limits_{Y_i}^{} \$ P(Y_i|Z_1...) $ \text{Q.E.D.}\\
+$ P(X|MB(X)) = \alpha P(X|U_1,...,U_m)  \prod\limits_{Y_i}^{} P(Y_i|Z_1...) $ \text{Q.E.D.}\\
 
 \subsection{part b.}
 
@@ -23,12 +23,12 @@ $ P(X|MB(X)) = \alpha P(X|U_1,...,U_m)  \prod\limits_{Y_i}^{} \$ P(Y_i|Z_1...) $
   The evidence variables: sprinkler, and wetgrass are initialized to their observed values while the nonobserved values: cloudy, rain are
   randomized. \\ \noindent
 
-  Initial State: <cloudy, sprinkler, rain, wetgrass> = <true, true, false, true> \\
+  Initial State: $<cloudy, sprinkler, rain, wetgrass> = <true, true, false, true>$ \\
 
   \noindent
 
   After initializing, the non evidence variables are sampled in an arbitrary order for N iterations, while the evidence variables are fixed.
-  For example, the non evidence variable cloudy is sampled, and a result of cloudy = false is returned giving: <false, true, false, true>.
+  For example, the non evidence variable cloudy is sampled, and a result of cloudy = false is returned giving: $<false, true, false, true>$.
   This process will finish until all of the iterations are complete.
 
   In total, there are 4 states since the evidence variables sprinkler and wetgrass will not be changing.
@@ -40,10 +40,10 @@ $ P(X|MB(X)) = \alpha P(X|U_1,...,U_m)  \prod\limits_{Y_i}^{} \$ P(Y_i|Z_1...) $
 $P(x'_i | mb(X_i)) = \alpha P(x'_i | parents(X_i)) P(y_i | parents(Y_i)))$ \\
 
 \noindent
-$R_C        $ = \text{P(Rain   = true   | sprinkler = true, wetgrass = true, cloudy = true)} \\
-$R_{\neg{C}}$ = \text{P(Rain   = true   | sprinkler = true, wetgrass = true, cloudy = false)} \\
-$C_R        $ = \text{P(Cloudy = true   | sprinkler = true, rain = true)} \\
-$C_{\neg{R}}$ = \text{P(Cloudy = true   | sprinkler = true, rain = false)}  \\
+$R_C        $ = $\text{P(Rain   = true   | sprinkler = true, wetgrass = true, cloudy = true)}$ \\
+$R_{\neg{C}}$ = $\text{P(Rain   = true   | sprinkler = true, wetgrass = true, cloudy = false)}$ \\
+$C_R        $ = $\text{P(Cloudy = true   | sprinkler = true, rain = true)} $\\
+$C_{\neg{R}}$ = $\text{P(Cloudy = true   | sprinkler = true, rain = false)} $ \\
 
 \noindent
 $R_C        = \alpha P(Rain = true| Cloudy = true) P(wetgrass = true | sprinkler = true, Rain = true)$ \\
